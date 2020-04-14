@@ -17,7 +17,8 @@ GLVisWrapper::GLVisWrapper(
 		m_boundingbox(BB_NONE),
 		m_colorbar(false),
 		m_light(true),
-		m_meshmode(MESH_NONE)
+		m_meshmode(MESH_NONE),
+		m_palette(PALETTE_VIVID)
 {
 }
 
@@ -32,6 +33,7 @@ GLVisWrapper::GLVisWrapper(const GLVisWrapper& viz):
 	set_colorbar(viz.m_colorbar);
 	set_light(viz.m_light);
 	set_meshmode(viz.m_meshmode);
+	set_palette(viz.m_palette);
 }
 
 
@@ -59,7 +61,7 @@ void GLVisWrapper::set_background(BGType background) {
 
 void GLVisWrapper::set_boundingbox(BBType boundingbox) {
 	if (boundingbox != m_boundingbox) {
-		int steps = abs(m_boundingbox - boundingbox) % 4;
+		int steps = abs(m_boundingbox - boundingbox) % BB_LAST_ITEM;
 		for (int i = 0; i < steps; ++i) {
 			m_keys += "a";
 		}
@@ -86,11 +88,22 @@ void GLVisWrapper::set_light(bool light) {
 
 void GLVisWrapper::set_meshmode(MeshMode meshmode) {
 	if (meshmode != m_meshmode) {
-		int steps = abs(m_meshmode - meshmode) % 3;
+		int steps = abs(m_meshmode - meshmode) % MESH_LAST_ITEM;
 		for (int i = 0; i < steps; ++i) {
 			m_keys += "m";
 		}
 		m_meshmode = meshmode;
+	}
+}
+
+
+void GLVisWrapper::set_palette(PaletteType palette) {
+	if (palette != m_palette) {
+		int steps = abs(m_palette - palette) % PALETTE_LAST_ITEM;
+		for (int i = 0; i < steps; ++i) {
+			m_keys += "P";
+		}
+		m_palette = palette;
 	}
 }
 

@@ -50,7 +50,7 @@ Here's an incomplete list of things still needed to be implemented:
 * [ ] s (cube scaling)
 * [x] c (toggle color bar)
 * [ ] C (plot caption)
-* [ ] p/P (color palettes)
+* [x] p/P (color palettes)
 * [ ] t (materials/lights)
 * [x] l (toggle light)
 * [x] a (bounding box axes)
